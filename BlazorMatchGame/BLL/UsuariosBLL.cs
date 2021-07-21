@@ -125,6 +125,27 @@ namespace BlazorMatchGame.BLL
             return usuarios;
         }
 
+        public static bool ExisteUsuario(string NombreDeUsuario)
+        {
+            bool encontrado = false;
+            var contexto = new Contexto();
+
+            try
+            {
+                encontrado = contexto.usuarios.Any(e => e.NombreDeUsuario == NombreDeUsuario );
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+            return encontrado;
+        }
+
         public static List<Usuarios> GetUsuarios()
         {
             List<Usuarios> lista = new List<Usuarios>();
