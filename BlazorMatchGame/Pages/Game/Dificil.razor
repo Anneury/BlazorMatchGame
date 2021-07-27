@@ -1,14 +1,14 @@
-﻿@page "/"
+﻿@page "/Dificil"
 @using System.Timers
 
 <style>
     .container {
-        width: 400px;
+        width: 900px;
     }
 
     button {
-        width: 100px;
-        height: 100px;
+        width: 70px;
+        height: 70px;
         font-size: 50px;
     }
 </style>
@@ -19,14 +19,14 @@
         {
             var animal = shuffledAnimals[animalNumber];
             var uniqueDescription = $"Button #{animalNumber}";
-            <div class="col-3z">
+            <div class="col-1">
                 <button @onclick="@(() => ButtonClick(animal, uniqueDescription))"
                         type="button" class="btn btn-outline-dark">
                     <h1>@animal</h1>
                 </button>
             </div>
         }
-    </div>
+</div>
     <div class="row">
         <h2>Matches found: @matchesFound</h2>
     </div>
@@ -36,8 +36,8 @@
 </div>
 
 @code {
-    List<string> animalEmoji = new List<string>()
-{
+        List<string> animalEmoji = new List<string>()
+    {
         "🐶","🐶",
         "🐺","🐺",
         "🐮","🐮",
@@ -46,6 +46,47 @@
         "🦁","🦁",
         "🐯","🐯",
         "🐹","🐹",
+        "💣","💣",
+        "👹","👹",
+        "💯","💯",
+        "👾","👾",
+        "👻","👻",
+        "🤖","🤖",
+        "🧙🏽‍♂️","🧙🏽‍♂️",
+        "🧛🏽‍♀️","🧛🏽‍♀️",
+        "👩🏽‍🔬","👩🏽‍🔬",
+        "👩🏽‍🚀","👩🏽‍🚀",
+        "🦅","🦅",
+        "🐎","🐎",
+        "🐣","🐣",
+        "🧊","🧊",
+        "🦪","🦪",
+        "🎮","🎮",
+        "🏅","🏅",
+        "🏆","🏆",
+        "🥇","🥇",
+        "🥈","🥈",
+        "🥉","🥉",
+        "🇩🇴","🇩🇴",
+        "🧸","🧸",
+        "🛩","🛩",
+        "🍺","🍺",
+        "🦖","🦖",
+        "🦌","🦌",
+        "🧠","🧠",
+        "🐬","🐬",
+        "🐊","🐊",
+        "🦍","🦍",
+        "🦦","🦦",
+        "🐆","🐆",
+        "🍩","🍩",
+        "🍥","🍥",
+        "🌎","🌎",
+        "🛸","🛸",
+        "💄","💄",
+        "🦴","🦴",
+        "🦠","🦠",
+        
     };
 
     List<string> shuffledAnimals = new List<string>();
@@ -96,7 +137,7 @@
                 .ToList();
 
             matchesFound++;
-            if (matchesFound == 8)
+            if (matchesFound == 18)
             {
                 timer.Stop();
                 timeDisplay += " - Play Again?";
