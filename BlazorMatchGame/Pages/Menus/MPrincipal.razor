@@ -1,5 +1,7 @@
 ﻿@page "/MenuPrincipal"
 
+@inject NavigationManager Nav
+
 <div class="container" style="width:400px">
     <div class="card bg-light " style="height:400px">
         <div class="card-header">
@@ -16,8 +18,8 @@
         </div>
         <div class="form-group">
             <div class="d-flex justify-content-center mt-3">
-                <button type="button" style="height: 50px; width: 300px;">
-                    Multijugador
+                <button type="button" style="height: 50px; width: 300px;" @onclick="Dificultades">
+                    Modos de Juego
                 </button>
             </div>
         </div>
@@ -40,5 +42,10 @@
 
 
 @code {
+
+    private void Dificultades()
+    {
+        Nav.NavigateTo($"/MDificultades");
+    }
 
 }
