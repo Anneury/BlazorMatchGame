@@ -20,7 +20,8 @@
                     <div class="form-group">
                         <label>PersonaId</label>
                         <div class="input-group">
-                            <InputNumber @bind-Value="user.UsuarioId" class="form-control col-4" />
+                            
+                            <InputNumber @bind-Value="user.UsuarioId" class="form-control col-4"/>
                             <div class="input-group-append">
                                 <button type="button" class="btn btn-primary" @onclick="Buscar">
                                     <span class="oi oi-magnifying-glass"></span> Buscar
@@ -43,20 +44,6 @@
                 <label>Nombre de Usuario</label>
                 <InputText @bind-Value="user.NombreDeUsuario" class="form-control" />
                 <ValidationMessage For="@(() => user.NombreDeUsuario)" />
-            </div>
-
-
-            <div class="form-group">
-                <label>Mejor puntuación</label>
-                <InputText @bind-Value="user.MejorPuntuación" class="form-control" />
-                <ValidationMessage For="@(() => user.MejorPuntuación)" />
-            </div>
-
-
-            <div class="form-group">
-                <label>Veces Jugado</label>
-                <InputNumber @bind-Value="user.VecesJugado" class="form-control" />
-                <ValidationMessage For="@(() => user.VecesJugado)" />
             </div>
 
         </div>
