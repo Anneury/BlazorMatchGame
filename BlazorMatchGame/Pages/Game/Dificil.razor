@@ -36,7 +36,7 @@
 </div>
 
 @code {
-        List<string> animalEmoji = new List<string>()
+    List<string> animalEmoji = new List<string>()
     {
         "🐶","🐶",
         "🐺","🐺",
@@ -86,11 +86,12 @@
         "💄","💄",
         "🦴","🦴",
         "🦠","🦠",
-        
+
     };
 
     List<string> shuffledAnimals = new List<string>();
     int matchesFound = 0;
+    int matchesFoundQ = 0;
     Timer timer;
     int tenthsOfSecondsElapsed = 0;
     string timeDisplay;
@@ -139,8 +140,9 @@
             matchesFound++;
             if (matchesFound == 18)
             {
+                matchesFoundQ = matchesFound;
                 timer.Stop();
-                timeDisplay += " - Play Again?";
+                timeDisplay += " ¿Nueva Partida?";
 
                 SetUpGame();
             }
