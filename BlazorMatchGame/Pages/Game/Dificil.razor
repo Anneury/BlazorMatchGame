@@ -6,6 +6,12 @@
         width: 900px;
     }
 
+    jonathan {
+        margin:auto;
+        width: 40px;
+        height: 50px;
+    }
+
     button {
         width: 70px;
         height: 70px;
@@ -26,12 +32,22 @@
                 </button>
             </div>
         }
-</div>
-    <div class="row">
-        <h2>Matches found: @matchesFound</h2>
     </div>
-    <div class="row">
-        <h2>Time: @timeDisplay</h2>
+</div>
+
+<div class="jonathan">
+    <div class="container-fluid" style="height:400px">
+        <div class="border border-dark" style="background-color:whitesmoke">
+            <div class="text-center">
+                <h3>CUADRADO DE PUNTAJE</h3>
+            </div>
+        </div>
+
+        <div class="border border-dark" style="background-color:whitesmoke">
+            <h4>Pares: @matchesFound</h4>
+            <h4>Tiempo: @timeDisplay</h4>
+        </div>
+
     </div>
 </div>
 
@@ -91,7 +107,6 @@
 
     List<string> shuffledAnimals = new List<string>();
     int matchesFound = 0;
-    int matchesFoundQ = 0;
     Timer timer;
     int tenthsOfSecondsElapsed = 0;
     string timeDisplay;
@@ -114,6 +129,15 @@
         tenthsOfSecondsElapsed = 0;
     }
 
+    private void Reiniciar()
+    {
+        Random random = new Random();
+        shuffledAnimals = animalEmoji
+            .OrderBy(item => random.Next())
+            .ToList();
+        tenthsOfSecondsElapsed = 0;
+    }
+
     string lastAnimalFound = string.Empty;
     string lastDescription = string.Empty;
 
@@ -124,6 +148,10 @@
             // First selection of the pair. Remember it.
             lastAnimalFound = animal;
             lastDescription = animalDescription;
+            if (matchesFound == 48)
+            {
+                matchesFound = 0;
+            }
 
             timer.Start();
         }
@@ -138,9 +166,8 @@
                 .ToList();
 
             matchesFound++;
-            if (matchesFound == 18)
+            if (matchesFound == 48)
             {
-                matchesFoundQ = matchesFound;
                 timer.Stop();
                 timeDisplay += " ¿Nueva Partida?";
 
