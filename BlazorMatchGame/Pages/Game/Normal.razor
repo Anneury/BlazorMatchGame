@@ -88,6 +88,7 @@
         timer = new Timer(100);
         timer.Elapsed += Timer_Tick;
 
+
         SetUpGame();
     }
 
@@ -115,7 +116,7 @@
 
     private void ButtonClick(string animal, string animalDescription)
     {
-        if (lastAnimalFound == string.Empty)
+        if (lastAnimalFound == string.Empty )
         {
             // First selection of the pair. Remember it.
             lastAnimalFound = animal;
@@ -162,6 +163,7 @@
             timeDisplay = (tenthsOfSecondsElapsed / 10F)
                 .ToString("0.0s");
             StateHasChanged();
+            timer.Start();
         });
     }
 } 
