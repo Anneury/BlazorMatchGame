@@ -1,17 +1,18 @@
-﻿@page "/Facil"
+﻿
+@page "/FacilR"
 @using System.Timers
 
 <style>
     .container {
         margin-left: 80px;
         width: 400px;
-        float:left;
+        float: left;
     }
 
-    jonathan{
-        float:right;
-        width:50px;
-        height:50px;
+    jonathan {
+        float: right;
+        width: 50px;
+        height: 50px;
     }
 
     button {
@@ -21,7 +22,7 @@
     }
 </style>
 
-<div class="container mt-4">
+<div class="container">
     <div class="row">
         @for (var NumeroAnimales = 0; NumeroAnimales < AnimalesMesclado.Count; NumeroAnimales++)
         {
@@ -57,7 +58,7 @@
 @code {
 
     List<string> animalEmoji = new List<string>()
-    {
+{
     "🐶","🐶",
     "🐺","🐺",
     "🐮","🐮",
@@ -71,7 +72,7 @@
     List<string> AnimalesMesclado = new List<string>();
     int ParesEncontrados = 0;
     Timer timer;
-    int tenthsOfSecondsElapsed = 80;
+    int tenthsOfSecondsElapsed = 0;
     string TiempoPantalla;
     string UltimoAnimalEncontrado = string.Empty;
     string UltimaDescripcion = string.Empty;
@@ -91,7 +92,7 @@
             .OrderBy(item => random.Next())
             .ToList();
         ParesEncontrados = 0;
-        tenthsOfSecondsElapsed = 80;
+        tenthsOfSecondsElapsed = 0;
     }
 
     private void Reiniciar()
@@ -100,7 +101,7 @@
         AnimalesMesclado = animalEmoji
             .OrderBy(item => random.Next())
             .ToList();
-        tenthsOfSecondsElapsed = 80;
+        tenthsOfSecondsElapsed = 0;
     }
 
     private void ButtonClick(string animal, string animalDescription)
@@ -149,14 +150,7 @@
     {
         InvokeAsync(() =>
         {
-            tenthsOfSecondsElapsed--;
-            if (tenthsOfSecondsElapsed <= 0)
-            {
-                timer.Stop();
-                TiempoPantalla += " ¿Jugar de nuevo?";
-
-                Reiniciar();
-            }
+            tenthsOfSecondsElapsed++;
             TiempoPantalla = (tenthsOfSecondsElapsed / 10F)
                 .ToString("0.0s");
             StateHasChanged();
