@@ -35,17 +35,18 @@
     </div>
 </div>
 
-<div class="jonathan">
-    <div class="container-fluid" style="height:400px">
-        <div class="border border-dark" style="background-color:whitesmoke">
+<div class="jonathan mt-5">
+
+    <div class="container-fluid bg-transparent" style="height:400px">
+        <div class="border border-dark">
             <div class="text-center">
-                <h3>CUADRADO DE PUNTAJE</h3>
+                <h3 class="text-light">CUADRADO DE PUNTAJE</h3>
             </div>
         </div>
 
-        <div class="border border-dark" style="background-color:whitesmoke">
-            <h4>Pares: @matchesFound</h4>
-            <h4>Tiempo: @timeDisplay</h4>
+        <div class="border border-dark">
+            <h4 class="text-light">Pares: @ParesEncontrados</h4>
+            <h4 class="text-light">Tiempo: @TiempoPantalla</h4>
         </div>
 
     </div>
@@ -83,9 +84,9 @@
         "🥇","🥇",
         "🥈","🥈",
         "🥉","🥉",
-        "🇩🇴","🇩🇴",
+        "🐉","🐉",
         "🧸","🧸",
-        "🛩","🛩",
+        "🐍","🐍",
         "🍺","🍺",
         "🦖","🦖",
         "🦌","🦌",
@@ -106,10 +107,12 @@
     };
 
     List<string> shuffledAnimals = new List<string>();
-    int matchesFound = 0;
+    int ParesEncontrados = 0;
     Timer timer;
     int tenthsOfSecondsElapsed = 0;
-    string timeDisplay;
+    string TiempoPantalla;
+    string UltimoAnimalEncontrado = string.Empty;
+    string UltimaDescripcion = string.Empty;
 
     protected override void OnInitialized()
     {
@@ -125,7 +128,7 @@
         shuffledAnimals = animalEmoji
             .OrderBy(item => random.Next())
             .ToList();
-        matchesFound = 0;
+        ParesEncontrados = 0;
         tenthsOfSecondsElapsed = 0;
     }
 
@@ -138,38 +141,37 @@
         tenthsOfSecondsElapsed = 0;
     }
 
-    string lastAnimalFound = string.Empty;
-    string lastDescription = string.Empty;
+
 
     private void ButtonClick(string animal, string animalDescription)
     {
-        if (lastAnimalFound == string.Empty)
+        if (UltimoAnimalEncontrado == string.Empty)
         {
             // First selection of the pair. Remember it.
-            lastAnimalFound = animal;
-            lastDescription = animalDescription;
-            if (matchesFound == 48)
+            UltimoAnimalEncontrado = animal;
+            UltimaDescripcion = animalDescription;
+            if (ParesEncontrados == 48)
             {
-                matchesFound = 0;
+                ParesEncontrados = 0;
             }
 
             timer.Start();
         }
-        else if ((lastAnimalFound == animal) && (animalDescription != lastDescription))
+        else if ((UltimoAnimalEncontrado == animal) && (animalDescription != UltimaDescripcion))
         {
             // Match found! Reset for next pair.
-            lastAnimalFound = string.Empty;
+            UltimoAnimalEncontrado = string.Empty;
 
             // Replace found animals with empty string to hide them.
             shuffledAnimals = shuffledAnimals
                 .Select(a => a.Replace(animal, string.Empty))
                 .ToList();
 
-            matchesFound++;
-            if (matchesFound == 48)
+            ParesEncontrados++;
+            if (ParesEncontrados == 48)
             {
                 timer.Stop();
-                timeDisplay += " ¿Nueva Partida?";
+                TiempoPantalla += " ¿Nueva Partida?";
 
                 Reiniciar();
             }
@@ -178,7 +180,7 @@
         {
             // User selected a pair that don't match.
             // Reset selection.
-            lastAnimalFound = string.Empty;
+            UltimoAnimalEncontrado = string.Empty;
         }
     }
 
@@ -187,7 +189,7 @@
         InvokeAsync(() =>
         {
             tenthsOfSecondsElapsed++;
-            timeDisplay = (tenthsOfSecondsElapsed / 10F)
+            TiempoPantalla = (tenthsOfSecondsElapsed / 10F)
                 .ToString("0.0s");
             StateHasChanged();
         });
